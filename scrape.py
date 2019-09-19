@@ -34,11 +34,26 @@ def create_links(base, extensions):
         links.append(base+li)
     return links
 
+def get_monster_data(url):
+    request = requests.get(url) # send a request
+    content = request.content # get the content
+    soup = BeautifulSoup(content, "html.parser") # parse it
+
+    a = soup.select("h2")
+    print(str(a)[8:-10])
+    return
+
 def main():
     base_link = 'https://jsigvard.com/dnd/' # add the links to this to get data
-    monsters = get_df() # get the monster dataframe
-    links = create_links(base_link, list(monsters.url)) # get the full urls
-    monsters['full_url'] = links # add to dataframe
-    print(monsters.head())
+
+    #monsters = get_df() # get the monster dataframe
+
+    #links = create_links(base_link, list(monsters.url)) # get the full urls
+    #monsters['full_url'] = links # add to dataframe
+    #monsters.to_pickle('df.pkl')
+    monsters = pd.read_pickle("df.pkl")
+    url = monsters.iloc[0].full_url
+    get_monster_data(url)
+
 
 if __name__=="__main__":main()
