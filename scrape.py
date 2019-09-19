@@ -39,8 +39,27 @@ def get_monster_data(url):
     content = request.content # get the content
     soup = BeautifulSoup(content, "html.parser") # parse it
 
-    a = soup.select("h2")
-    print(str(a)[8:-10])
+    # get the name
+    name = str(soup.select("h2"))[8:-10]
+
+    # get all the text
+    text = soup.get_text()
+
+    # this gets the armor class
+    aci = text.find("Armor Class")
+    aci2 = text[aci:].find(')')
+    ac = text[aci+12:aci+aci2+1]
+
+    # this gets the hit points
+    hpi = text.find("Hit Points") # find hit points
+    hpi2 = text[hpi:].find(')') # find where the line ends
+    hp = text[hpi+11:(hpi2+hpi+1)] # get the text
+
+    # this gets the saving throws
+    sti = text.find("Saving Throws") # find the saving throws
+    sti2 = text[sti:].find("\n")
+    st = text[sti+14:sti+sti2+1]
+    
     return
 
 def main():
