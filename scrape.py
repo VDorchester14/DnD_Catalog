@@ -89,7 +89,34 @@ def get_monster_data(url):
     cri2 = text[cri:].find("\n")+cri
     cr = text[cri+len("Challenge "):cri2]
     print(cr)
-    
+
+    # Skills 
+    ski = text.find("Skills")
+    ski2 = text[ski:].find("\n")+ski
+    if(ski > 0):
+        skills = text[ski+len("skills "):ski2]
+        print(skills)
+
+    # Languages 
+    lai = text.find("Languages")
+    lai2 = text[lai:].find("\n")+lai
+    if lai>0:
+        languages = text[lai+len("languages "):lai2]
+        print(languages)
+
+
+    # now get the attacks
+    att = soup.select("a", {"class":"attack"})
+    attacks = [a.text for a in att]
+    # currently there are some duplicate attacks  add a line
+    # here to fix it.
+    for a in attacks:
+        print(a)
+
+    # stats
+    stats = soup.select("td")
+    print(stats)
+
     return
 
 def main():
