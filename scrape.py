@@ -59,7 +59,19 @@ def get_monster_data(url):
     sti = text.find("Saving Throws") # find the saving throws
     sti2 = text[sti:].find("\n")
     st = text[sti+14:sti+sti2+1]
-    
+
+    #this gets speed
+    spi = text.find("Speed")
+    spi2 = text[spi:].find("\n")
+    sp = text[spi:spi+spi2]
+    print(sp)
+ 
+    # damage immunities
+    dmgi = text.find("Damage Immunities")
+    dmgi2 = text[dmgi:].find("\n")+dmgi
+    dmg = text[dmgi:dmgi2]
+    print(dmg)
+
     return
 
 def main():
