@@ -63,59 +63,13 @@ def get_monster_data(url):
     #this gets speed
     spi = text.find("Speed")
     spi2 = text[spi:].find("\n")
-    sp = text[spi+6:spi+spi2]
+    sp = text[spi:spi+spi2]
     print(sp)
  
     # damage immunities
     dmgi = text.find("Damage Immunities")
     dmgi2 = text[dmgi:].find("\n")+dmgi
-    dmg = text[dmgi+18:dmgi2]
-    print(dmg)
-
-    # Condition immunities
-    coni = text.find("Condition Immunities")
-    coni2 = text[coni:].find("\n")+coni
-    con = text[coni+21:coni2]
-    print(con)
-
-    # Senses
-    sensei = text.find("Senses")
-    sensei2 = text[sensei:].find("\n")+sensei
-    senses = text[sensei+len("senses "):sensei2]
-    print(senses)
-    
-    # Challenge
-    cri = text.find("Challenge")
-    cri2 = text[cri:].find("\n")+cri
-    cr = text[cri+len("Challenge "):cri2]
-    print(cr)
-
-    # Skills 
-    ski = text.find("Skills")
-    ski2 = text[ski:].find("\n")+ski
-    if(ski > 0):
-        skills = text[ski+len("skills "):ski2]
-        print(skills)
-
-    # Languages 
-    lai = text.find("Languages")
-    lai2 = text[lai:].find("\n")+lai
-    if lai>0:
-        languages = text[lai+len("languages "):lai2]
-        print(languages)
-
-
-    # now get the attacks
-    att = soup.select("a", {"class":"attack"})
-    attacks = [a.text for a in att]
-    # currently there are some duplicate attacks  add a line
-    # here to fix it.
-    for a in attacks:
-        print(a)
-
-    # stats
-    stats = soup.select("td")
-    print(stats)
+    dmg = text
 
     return
 
@@ -133,3 +87,4 @@ def main():
 
 
 if __name__=="__main__":main()
+	
