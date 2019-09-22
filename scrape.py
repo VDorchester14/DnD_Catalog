@@ -47,29 +47,53 @@ def get_monster_data(url):
 
     # this gets the armor class
     aci = text.find("Armor Class")
-    aci2 = text[aci:].find(')')
-    ac = text[aci+12:aci+aci2+1]
+    aci2 = text[aci:].find('\n')+aci
+    armor_class = text[aci+len("Armor Class "):aci2]
 
     # this gets the hit points
     hpi = text.find("Hit Points") # find hit points
-    hpi2 = text[hpi:].find(')') # find where the line ends
-    hp = text[hpi+11:(hpi2+hpi+1)] # get the text
+    hpi2 = text[hpi:].find('\n')+hpi # find where the line ends
+    hit_points = text[hpi+len("Hit Points "):hpi2] # get the text
 
     # this gets the saving throws
     sti = text.find("Saving Throws") # find the saving throws
-    sti2 = text[sti:].find("\n")
-    st = text[sti+14:sti+sti2+1]
+    sti2 = text[sti:].find("\n")+sti
+    saving_throws = text[sti+len("Saving Throws "):sti2]
 
     #this gets speed
     spi = text.find("Speed")
-    spi2 = text[spi:].find("\n")
-    sp = text[spi:spi+spi2]
-    print(sp)
- 
+    spi2 = text[spi:].find("\n")+spi
+    speed = text[spi:spi2]
+
     # damage immunities
     dmgi = text.find("Damage Immunities")
     dmgi2 = text[dmgi:].find("\n")+dmgi
-    dmg = text
+    dmg_immunities = text[dmgi+len("Damage Immunities "):dmgi2]
+
+    # languages
+    lai = text.find("Languages")
+    if(lai>0):
+        lai2 = text[lai:].find("\n")+lai
+        languages = text[lai+len("Languages "):lai2]
+    else:
+        languages = "None"
+
+    # skills
+    ski = text.find("Skills")
+    ski2 = text[ski:].find("\n")+ski
+    skills = text[ski+len("Skills "):ski2]
+
+    # senses
+    sei = text.find("Senses")
+    sei2 = text[sei:].find("\n")+sei
+    senses = text[sei+len("senses "):sei2]
+
+    # challenge
+    chi = text.find("Challenge")
+    chi2 = text[chi:].find("\n")+chi
+    challenge = text[chi+len("challenge "):chi2]
+
+    print(armor_class, hit_points, saving_throws, speed, dmg_immunities, languages, skills, senses, challenge)
 
     return
 
@@ -87,4 +111,3 @@ def main():
 
 
 if __name__=="__main__":main()
-	
