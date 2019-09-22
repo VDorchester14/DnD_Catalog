@@ -35,6 +35,7 @@ def create_links(base, extensions):
     return links
 
 def get_monster_data(url):
+    # getting the page data
     request = requests.get(url) # send a request
     content = request.content # get the content
     soup = BeautifulSoup(content, "html.parser") # parse it
@@ -45,20 +46,31 @@ def get_monster_data(url):
     # get all the text
     text = soup.get_text()
 
+    # these are the attributes I want to get
     info = ["Armor Class", "Hit Points", "Saving Throws", "Speed",
     "Damage Immunities","Languages","Skills","Senses","Challenge"]
 
-    data = []
-    for attribute in info:
-        start = text.find(attribute)
-        if (start > 0):
-            end = text[start:].find("\n")+start
-            data.append(text[start+len(attribute)+1:end])
-        else:
-            data.append("None")
+    data = [] # this will store all of the data for a monster
+    for attribute in info: # iterate over each attribute to get
+        start = text.find(attribute) # the beginning of where the data is
+        if (start > 0): # if it exists
+            end = text[start:].find("\n")+start # find the end of the line
+            data.append(text[start+len(attribute)+1:end]) # pull the data
+        else: # if the data cannot be found
+            data.append("None") # just put None
 
-    for i in range(len(data)):
-        print(info[i]+": "+data[i])
+    # now I will get the table with its base stats
+    # stats in order are STR DEX CON INT WIS CHA
+    base_data = soup.select("td") # get the stat table
+    for b in base_data[6:]: # iterate over the numbers
+        b = str(b) # convert to string
+        i = b.find(">")+1 # find the start
+        j = b[i:].find("<")+i # find where the data finishes
+        stat = b[i:j] # extract it
+        data.append(stat) # add it to the list
+
+    # now I will get the attacks
+
 
     return
 
