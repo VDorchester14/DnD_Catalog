@@ -70,6 +70,11 @@ def get_monster_data(url):
         data.append(stat) # add it to the list
 
     # now I will get the attacks
+    acts = soup.select("a", {"class":"attack"})
+    for i in acts:
+        print("Action!!!")
+        print(i.text)
+    print(len(acts))
 
 
     return
