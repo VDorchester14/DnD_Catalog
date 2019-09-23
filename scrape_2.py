@@ -101,7 +101,7 @@ def get_monster_data(df):
         acts_unique = list(OrderedDict.fromkeys(acts_unique)) # remove duplicates
 
         # now remove the source
-        actions = acts_unique[:-1] # this removes the line with the source
+        #actions = acts_unique[:-1] # this removes the line with the source
         data.append(actions) # add the actions to the list
 
         # add to dataframe and shift index
