@@ -131,7 +131,7 @@ def main():
     #url = monsters.iloc[0].full_url
     #monsters = get_monster_data(monsters)
     #monsters.to_pickle("monsters.pkl")
-    monstesr = pd.read_pickle("monsters.pkl")
+    monsters = pd.read_pickle("monsters.pkl")
     print(monsters.head(3))
 
 
