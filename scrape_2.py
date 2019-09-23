@@ -127,10 +127,11 @@ def main():
     #links = create_links(base_link, list(monsters.url)) # get the full urls
     #monsters['full_url'] = links # add to dataframe
     #monsters.to_pickle('df.pkl')
-    monsters = pd.read_pickle("df.pkl")
+    #monsters = pd.read_pickle("df.pkl")
     #url = monsters.iloc[0].full_url
-    monsters = get_monster_data(monsters)
+    #monsters = get_monster_data(monsters)
     monsters.to_pickle("monsters.pkl")
-    
+    print(monsters.head(3))
+
 
 if __name__=="__main__":main()
